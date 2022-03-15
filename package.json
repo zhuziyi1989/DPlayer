@@ -1,5 +1,5 @@
 {
-    "name": "dplayer",
+    "name": "chinamcloud-player",
     "version": "1.26.0",
     "description": "Wow, such a lovely HTML5 danmaku video player",
     "main": "dist/DPlayer.min.js",

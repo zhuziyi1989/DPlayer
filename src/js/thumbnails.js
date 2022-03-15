@@ -1,3 +1,4 @@
+// 略缩图
 class Thumbnails {
     constructor(options) {
         this.container = options.container;

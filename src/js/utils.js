@@ -131,6 +131,34 @@ const utils = {
                 return 'right';
         }
     },
+
+    /**
+     * @param {毫秒时间} msTime
+     * @param {是否显示毫秒} isMsec
+     * @param {当 msTime < 1hour 是否显示小时} msTime
+     * @returns 诸如 00:00:00 这种格式的时间
+     */
+    getFormatHMS: (msTime, isMsec = false, hiddenHour = false) => {
+        const time = msTime / 1000;
+        const format = (e) => e.toString().padStart(2, '0');
+        const hour = format(Math.floor(time / 60 / 60));
+        const minute = format(Math.floor(time / 60) % 60);
+        const second = format(Math.floor(time) % 60);
+        const msec = format(Math.floor(msTime) % 1000);
+        if (isMsec) {
+            if (hiddenHour && msTime < 1 * 60 * 60 * 10000) {
+                return `${minute}.${second}.${msec}`;
+            } else {
+                return `${hour}.${minute}.${second}.${msec}`;
+            }
+        } else {
+            if (hiddenHour && msTime < 1 * 60 * 60 * 10000) {
+                return `${minute}.${second}`;
+            } else {
+                return `${hour}.${minute}.${second}`;
+            }
+        }
+    },
 };
 
 export default utils;

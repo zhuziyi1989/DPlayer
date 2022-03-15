@@ -58,11 +58,39 @@
                 .dplayer-highlight-text {
                     display: block;
                 }
+                .dplayer-highlight-images {
+                    display: block;
+                }
                 &~.dplayer-bar-preview {
                     opacity: 0;
                 }
                 &~.dplayer-bar-time {
                     opacity: 0;
+                }
+            }
+            .dplayer-highlight-images {
+                position: absolute;
+                display: none;
+                background: #fff;
+                pointer-events: none;
+                background-size: 100%;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                .dplayer-highlight-text-in {
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    padding: 5px;
+                    transform: translateX(-50%);
+                    color: #fff;
+                    font-size: 12px;
+                    max-width: 150px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    // text-align: left;
+                    background-color: rgba(0, 0, 0, .62);
                 }
             }
             .dplayer-highlight-text {
@@ -71,12 +99,12 @@
                 left: 50%;
                 top: -24px;
                 padding: 5px 8px;
-                background-color: rgba(0, 0, 0, .62);
                 color: #fff;
                 border-radius: 4px;
                 font-size: 12px;
                 white-space: nowrap;
                 transform: translateX(-50%);
+                background-color: rgba(0, 0, 0, .62);
             }
         }
         .dplayer-bar-preview {

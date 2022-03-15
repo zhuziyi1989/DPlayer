@@ -56,8 +56,8 @@ export default (options) => {
             },
         },
         {
-            text: 'About author',
-            link: 'https://diygod.me',
+            text: 'About ChinaMCloud',
+            link: 'https://www.chinamcloud.com/',
         },
         {
             text: `DPlayer v${DPLAYER_VERSION}`,

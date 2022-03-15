@@ -61,12 +61,13 @@ class Controller {
             });
         }
     }
-
+    // 初始化标记点
     initHighlights() {
         this.player.on('durationchange', () => {
             if (this.player.video.duration !== 1 && this.player.video.duration !== Infinity) {
                 if (this.player.options.highlight) {
                     const highlights = document.querySelectorAll('.dplayer-highlight');
+                    // const barWrap = document.querySelectorAll('.dplayer-bar-wrap');
                     [].slice.call(highlights, 0).forEach((item) => {
                         this.player.template.playedBarWrap.removeChild(item);
                     });
@@ -77,14 +78,42 @@ class Controller {
                         const p = document.createElement('div');
                         p.classList.add('dplayer-highlight');
                         p.style.left = (this.player.options.highlight[i].time / this.player.video.duration) * 100 + '%';
-                        p.innerHTML = '<span class="dplayer-highlight-text">' + this.player.options.highlight[i].text + '</span>';
+                        if (this.player.options.highlight[i].imgageSrc) {
+                            const imagesWidth = 160;
+                            const inagesHeight = (this.player.video.videoHeight / this.player.video.videoWidth) * imagesWidth;
+                            const barWidth = this.player.options.container.querySelector('.dplayer-bar-wrap').clientWidth;
+                            const position = barWidth * (this.player.options.highlight[i].time / this.player.video.duration);
+                            let marginLeft = 0;
+                            if (position <= imagesWidth / 2) {
+                                const cha = imagesWidth / 2 - position - 10;
+                                marginLeft = cha;
+                            } else if (barWidth - position <= imagesWidth / 2) {
+                                const cha = -(imagesWidth / 2 - (barWidth - position) - 10);
+                                marginLeft = cha;
+                            }
+                            p.innerHTML =
+                                '<span class ="dplayer-highlight-images" style ="background-image: url(' +
+                                this.player.options.highlight[i].imgageSrc +
+                                ');margin-left:' +
+                                marginLeft +
+                                'px; width: ' +
+                                imagesWidth +
+                                'px; height: ' +
+                                inagesHeight +
+                                'px;"> <span class="dplayer-highlight-text-in" > ' +
+                                this.player.options.highlight[i].text +
+                                '</span > </span>';
+                        } else {
+                            p.innerHTML = '<span class="dplayer-highlight-text" > ' + this.player.options.highlight[i].text + '</span >';
+                        }
+
                         this.player.template.playedBarWrap.insertBefore(p, this.player.template.playedBarTime);
                     }
                 }
             }
         });
     }
-
+    // 初始化缩略图
     initThumbnails() {
         if (this.player.options.video.thumbnails) {
             this.thumbnails = new Thumbnails({
@@ -237,7 +266,7 @@ class Controller {
                     dataURL = URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = dataURL;
-                    link.download = 'DPlayer.png';
+                    link.download = `Screenshot.${utils.getFormatHMS(this.player.video.currentTime * 1000, true, true)}.png`;
                     link.style.display = 'none';
                     document.body.appendChild(link);
                     link.click();
