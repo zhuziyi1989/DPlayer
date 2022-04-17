@@ -111,7 +111,7 @@ function initPlayers() {
         },
         contextmenu: [
             {
-                text: 'custom contextmenu',
+                text: '自定义菜单',
                 link: 'https://github.com/MoePlayer/DPlayer'
             }
         ],
