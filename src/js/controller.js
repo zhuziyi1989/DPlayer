@@ -62,27 +62,28 @@ class Controller {
         }
     }
     // 初始化标记点
-    initHighlights() {
+    initHighlights(optionsHighlight = this.player.options.highlight) {
+        console.log(1);
         this.player.on('durationchange', () => {
             if (this.player.video.duration !== 1 && this.player.video.duration !== Infinity) {
-                if (this.player.options.highlight) {
+                if (optionsHighlight) {
                     const highlights = document.querySelectorAll('.dplayer-highlight');
                     // const barWrap = document.querySelectorAll('.dplayer-bar-wrap');
                     [].slice.call(highlights, 0).forEach((item) => {
                         this.player.template.playedBarWrap.removeChild(item);
                     });
-                    for (let i = 0; i < this.player.options.highlight.length; i++) {
-                        if (!this.player.options.highlight[i].text || !this.player.options.highlight[i].time) {
+                    for (let i = 0; i < optionsHighlight.length; i++) {
+                        if (!optionsHighlight[i].text || !optionsHighlight[i].time) {
                             continue;
                         }
                         const p = document.createElement('div');
                         p.classList.add('dplayer-highlight');
-                        p.style.left = (this.player.options.highlight[i].time / this.player.video.duration) * 100 + '%';
-                        if (this.player.options.highlight[i].imgageSrc) {
+                        p.style.left = (optionsHighlight[i].time / this.player.video.duration) * 100 + '%';
+                        if (optionsHighlight[i].imgageSrc) {
                             const imagesWidth = 160;
                             const inagesHeight = (this.player.video.videoHeight / this.player.video.videoWidth) * imagesWidth;
                             const barWidth = this.player.options.container.querySelector('.dplayer-bar-wrap').clientWidth;
-                            const position = barWidth * (this.player.options.highlight[i].time / this.player.video.duration);
+                            const position = barWidth * (optionsHighlight[i].time / this.player.video.duration);
                             let marginLeft = 0;
                             if (position <= imagesWidth / 2) {
                                 const cha = imagesWidth / 2 - position - 10;
@@ -93,7 +94,7 @@ class Controller {
                             }
                             p.innerHTML =
                                 '<span class ="dplayer-highlight-images" style ="background-image: url(' +
-                                this.player.options.highlight[i].imgageSrc +
+                                optionsHighlight[i].imgageSrc +
                                 ');margin-left:' +
                                 marginLeft +
                                 'px; width: ' +
@@ -101,10 +102,10 @@ class Controller {
                                 'px; height: ' +
                                 inagesHeight +
                                 'px;"> <span class="dplayer-highlight-text-in" > ' +
-                                this.player.options.highlight[i].text +
+                                optionsHighlight[i].text +
                                 '</span > </span>';
                         } else {
-                            p.innerHTML = '<span class="dplayer-highlight-text" > ' + this.player.options.highlight[i].text + '</span >';
+                            p.innerHTML = '<span class="dplayer-highlight-text" > ' + optionsHighlight[i].text + '</span >';
                         }
 
                         this.player.template.playedBarWrap.insertBefore(p, this.player.template.playedBarTime);

@@ -526,6 +526,11 @@ class DPlayer {
         }
     }
 
+    updateHighlights(option) {
+        console.log(option);
+        this.controller.initHighlights(option)
+    }
+
     switchQuality(index) {
         index = typeof index === 'string' ? parseInt(index) : index;
         if (this.qualityIndex === index || this.switchingQuality) {

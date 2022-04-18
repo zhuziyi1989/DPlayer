@@ -77,6 +77,7 @@ function initPlayers() {
     // dp2
     window.dp2 = new DPlayer({
         container: document.getElementById('dplayer2'),
+        lang:'zh-cn',
         preload: 'none',
         autoplay: false,
         theme: '#FADFA3',
@@ -115,41 +116,7 @@ function initPlayers() {
                 link: 'https://github.com/MoePlayer/DPlayer'
             }
         ],
-        highlight: [{
-                time: 20,
-                text: '这也是一个很长很长的文字说明',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            }, {
-                time: 10,
-                text: '3333',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            }, {
-                time: 150,
-                text: '这是文字说明',
-                imgageSrc: '',
-            },
-            {
-                time: 120,
-                text: '这是文字说明',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            }, {
-                time: 250,
-                text: '末端文字',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            }, {
-                time: 240,
-                text: '末端文字2',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            }, {
-                time: 50,
-                text: '末端文字3',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            }, {
-                time: 5,
-                text: '文字1',
-                imgageSrc: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            },
-        ],
+        highlight: [],
     });
 
     const events = [
