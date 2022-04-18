@@ -7,7 +7,7 @@ export default (options) => {
         container: options.element || document.getElementsByClassName('dplayer')[0],
         live: false,
         autoplay: false,
-        theme: '#b7daff',
+        theme: '#3e8ff7',
         loop: false,
         lang: (navigator.language || navigator.browserLanguage).toLowerCase(),
         screenshot: false,
@@ -56,12 +56,8 @@ export default (options) => {
             },
         },
         {
-            text: 'About ChinaMCloud',
-            link: 'https://www.chinamcloud.com/',
-        },
-        {
-            text: `DPlayer v${DPLAYER_VERSION}`,
-            link: 'https://github.com/MoePlayer/DPlayer',
+            text: `Video Player v${DPLAYER_VERSION}`,
+            link: '',
         },
     ]);
 
